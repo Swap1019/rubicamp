@@ -4,6 +4,7 @@ from django.contrib.auth.forms import (
     )
 from .models import (
     User,
+    UserInfo,
     )
 
 class SignUpForm(UserCreationForm):
@@ -22,3 +23,18 @@ class SignUpForm(UserCreationForm):
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password','style':'margin-bottom:7px;'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation','style':'margin-bottom:7px;'})
+
+
+
+class UserInfoForm(forms.ModelForm):
+    def __init__(self, *args, fields=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if fields:
+            allowed = set(fields)
+            for field_name in list(self.fields):
+                if field_name not in allowed:
+                    self.fields.pop(field_name)
+
+    class Meta:
+        model = UserInfo
+        fields = ['website_type','user_type','extra_features','sample','color_palette','logo','text_content']

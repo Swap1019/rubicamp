@@ -23,6 +23,7 @@
 
 body {
     background-color: var(--dark-bg);
+    font-family: "Vazirmatn", sans-serif;
     color: var(--text-light);
     padding: 40px 20px;
     background-image: radial-gradient(circle at 20% 35%, var(--primary-glow), transparent 25%),
@@ -30,6 +31,7 @@ body {
     background-attachment: fixed;
     overflow-x: hidden;
 }
+  
 
 .container {
     max-width: 1200px;

@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/rubikamp/base.css' %}" />
   <link rel="stylesheet" href="{% static 'css/rubikamp/home.css' %}" />
   <title>فانتوم | داشبورد</title>
@@ -16,7 +17,7 @@
         <nav class="top-nav">
           <a href="{% url 'rubikamp:Home' %}">خانه</a>
           {% if user.is_authenticated %}
-              <a href="{% url 'rubikamp:user-website-create' %}">وبسایت شما</a>
+              <a href="{% url 'rubikamp:user-redirect' %}">وبسایت شما</a>
           {% endif %}
           <a href="{% url 'rubikamp:about' %}">درباره ما</a>
         </nav>

@@ -1,0 +1,72 @@
+{% extends 'rubikamp/base.html' %}
+{% load static %}
+
+{% block content %}
+<link href="{% static '/css/rubikamp/form.css' %}" rel="stylesheet">
+<main class="main-content">
+    <div class="container">
+        <section id="user-info-form">
+            <div class="section-title">
+                <h2>ثبت اطلاعات وبسایت شما</h2>
+                <p>لطفاً اطلاعات مورد نیاز را وارد کنید.</p>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.management_form }}
+                <div class="form-step" id="step-{{ step }}">
+                    {% if step == 1 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.website_type.id_for_label }}" class="top-right-label">نوع وبسایت</label>
+                        {{ form.website_type }}
+                        <button type="submit" class="btn primary bottom-left-btn">ادامه</button>
+                    </div>
+                    {% elif step == 2 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.user_type.id_for_label }}">نوع کاربران</label>
+                        {{ form.user_type }}
+                    </div>
+                    {% elif step == 3 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.extra_features.id_for_label }}">ویژگی‌های اضافی</label>
+                        {{ form.extra_features }}
+                    </div>
+                    {% elif step == 4 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.sample.id_for_label }}">نمونه</label>
+                        {{ form.sample }}
+                    </div>
+                    {% elif step == 5 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.color_palette.id_for_label }}">رنگ‌ها</label>
+                        {{ form.color_palette }}
+                    </div>
+                    {% elif step == 6 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.logo.id_for_label }}">لوگو</label>
+                        {{ form.logo }}
+                    </div>
+                    {% elif step == 7 %}
+                    <div class="form-group center-box">
+                        <label for="{{ form.text_content.id_for_label }}">محتوا</label>
+                        {{ form.text_content }}
+                    </div>
+                    {% endif %}
+                </div>
+            
+                {% if step != 1 %}
+                <div class="form-navigation">
+                    <button type="submit" class="btn primary bottom-left-btn">
+                        {% if step == 7 %} ارسال {% else %} ادامه {% endif %}
+                    </button>
+                </div>
+                {% endif %}
+            
+                <input type="hidden" name="step" value="{{ step }}">
+            </form>
+            
+        </section>
+    </div>
+</main>
+<script src="{% static '/js/rubikamp/user-info-form.js' %}"></script>
+{% endblock %}
