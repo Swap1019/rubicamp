@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static '/css/rubikamp/base.css' %}" />
+  <title>فانتوم | پورتفولیو دیجیتال</title>
+  
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 style="color: var(--primary)">فانتوم</h1>
+      <p>سازنده تجربه‌های دیجیتال خلاقانه</p>
+      <nav>
+        <a href="#about">درباره ما</a>
+        <a href="#team">تیم ما</a>
+        <a href="#projects">پروژه‌ها</a>
+      </nav>
+    </header>
+
+    <section id="questionnaire">
+      <div class="section-title">
+        <h2>فرم مشاوره طراحی سایت</h2>
+        <p>به سوالات زیر پاسخ دهید تا ساختار سایت شما شکل بگیرد</p>
+      </div>
+      <form id="quiz-form">
+        <div id="question-box" class="form-group"></div>
+        <button class="btn" type="button" onclick="nextQuestion()">مرحله بعد</button>
+      </form>
+      <div id="loading" style="display:none; text-align:center; margin-top:40px">
+        <p>در حال ساخت DNA سایت شما...</p>
+        <div style="margin-top:20px; width:40px; height:40px; border: 5px solid var(--primary); border-top-color: transparent; border-radius:50%; animation: spin 1s linear infinite"></div>
+      </div>
+      <div id="result" style="display:none; text-align:center; margin-top:40px">
+        <p>سایت شما آماده است!</p>
+        <a class="btn" href="https://example.com" target="_blank">نمایش سایت</a>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="section-title">
+        <h2>اعضای تیم</h2>
+      </div>
+      <div class="team-container">
+        <div class="member-card"><div class="avatar-placeholder">👩‍💻</div><h3>طراح UI</h3></div>
+        <div class="member-card"><div class="avatar-placeholder">👨‍💻</div><h3>برنامه‌نویس</h3></div>
+        <div class="member-card"><div class="avatar-placeholder">📈</div><h3>تحلیل‌گر</h3></div>
+        <div class="member-card"><div class="avatar-placeholder">🧠</div><h3>استراتژیست</h3></div>
+        <div class="member-card"><div class="avatar-placeholder">🎨</div><h3>مدیر هنری</h3></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>درباره ما</h2>
+        <p>فانتوم تیمی است با تخصص در طراحی تجربه دیجیتال منحصربه‌فرد</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>پروژه‌ها</h2>
+        <p>برخی از پروژه‌های موفق ما</p>
+      </div>
+      <ul>
+        <li>سایت فروشگاهی</li>
+        <li>پنل ادمین</li>
+        <li>اپلیکیشن موبایل</li>
+      </ul>
+    </section>
+  </div>
+
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</body>
+</html>

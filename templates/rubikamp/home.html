@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/home.css' %}" />
+  <title>فانتوم | داشبورد</title>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <!-- User Info -->
+        {% if user.is_authenticated %}
+        <div class="profile-wrapper" onclick="toggleDropdown()">
+        {% if user.profile and user.profile.url %}
+            <img src="{{ user.profile.url }}" alt="پروفایل" class="profile-img" />
+        {% else %}
+            <div class="profile-img" style="background-color: var(--border); display: flex; align-items: center; justify-content: center;">👤</div>
+        {% endif %}
+        <div class="profile-info">{{ user.username }}</div>
+            <div id="userDropdown" class="dropdown">
+                <a href="#">آمار کاربر</a>
+                <form id="logout-form" action="{% url 'rubikamp:user-logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="all: unset; cursor: pointer;">خروج</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="profile-wrapper">
+            <a href="{% url 'rubikamp:user-login' %}" class="create-btn">ورود</a>
+        </div>
+        {% endif %}
+
+
+      <!-- Navigation -->
+      <nav class="top-nav">
+        <a href="#home">فانتوم</a>
+        <a href="#about">درباره ما</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+        
+            <section id="team">
+              <div class="section-title">
+                <h2>اعضای تیم</h2>
+              </div>
+              <div class="team-container">
+                <div class="member-card"><div class="avatar-placeholder">👩‍💻</div><h3>طراح UI</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">👨‍💻</div><h3>برنامه‌نویس</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">📈</div><h3>تحلیل‌گر</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">🧠</div><h3>استراتژیست</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">🎨</div><h3>مدیر هنری</h3></div>
+              </div>
+            </section>
+        
+            <section id="about">
+              <div class="section-title">
+                <h2>درباره ما</h2>
+                <p>فانتوم تیمی است با تخصص در طراحی تجربه دیجیتال منحصربه‌فرد</p>
+              </div>
+            </section>
+        
+            <section id="projects">
+              <div class="section-title">
+                <h2>پروژه‌ها</h2>
+                <p>برخی از پروژه‌های موفق ما</p>
+              </div>
+              <ul>
+                <li>سایت فروشگاهی</li>
+                <li>پنل ادمین</li>
+                <li>اپلیکیشن موبایل</li>
+              </ul>
+            </section>
+          </div>
+    </main>
+  </div>
+</body>
+    <script src="{% static 'js/rubikamp/home.js' %}"></script>
+</html>

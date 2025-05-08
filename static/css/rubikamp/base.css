@@ -1,0 +1,146 @@
+
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/font-face.css');
+
+:root {
+    --primary: #00ffe1;
+    --primary-glow: rgba(0, 255, 225, 0.15);
+    --dark-bg: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --card-dark: #0d0d0d;
+    --border: #292929;
+    --text-light: #fff;
+    --text-dim: #ccc;
+    --accent: #ff007b;
+    --accent-glow: rgba(255, 0, 123, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazir', sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 40px 20px;
+    background-image: radial-gradient(circle at 20% 35%, var(--primary-glow), transparent 25%),
+                    radial-gradient(circle at 80% 10%, var(--accent-glow), transparent 35%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    position: relative;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+    animation: fadeIn 0.7s ease forwards;
+}
+
+.btn {
+    background: var(--primary);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+.member-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 255, 225, 0.2);
+}
+
+.avatar-placeholder {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    nav {
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .member-card {
+    width: 100%;
+    max-width: 300px;
+    }
+}

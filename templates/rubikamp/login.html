@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/register.css' %}" />
+  <title>ورود | فانتوم</title>
+  <style>
+    p {
+        color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <section id="login-form">
+      <div class="section-title">
+        <h2>ورود</h2>
+        <p>لطفاً اطلاعات ورود خود را وارد کنید</p>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+      
+        {% if form.non_field_errors %}
+          <div class="error">
+            <p class="error-message">{{ form.non_field_errors }}</p>
+          </div>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="{{ form.username.id_for_label }}">نام کاربری</label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <div class="error">
+              {% for error in form.username.errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.password.id_for_label }}">رمز عبور</label>
+          {{ form.password }}
+          {% if form.password.errors %}
+            <div class="error">
+              {% for error in form.password.errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <button class="btn primary" type="submit">ورود</button>
+      </form>
+      
+      <p>حساب کاربری ندارید؟ <a href="{% url 'rubikamp:user-register' %}"> ثبت‌نام کنید!</a></p>
+    </section>
+
+  </div>
+</body>
+</html>

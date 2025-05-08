@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/register.css' %}" />
+  <title>فانتوم | پورتفولیو دیجیتال</title>
+  <style>
+    p {
+        color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <section id="register-form">
+      <div class="section-title">
+        <h2>فرم ثبت‌نام</h2>
+        <p>لطفاً اطلاعات زیر را وارد کنید</p>
+      </div>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+        <!-- Display non-field errors if there are any -->
+        {% if form.non_field_errors %}
+          <div class="error">
+            {% for error in form.non_field_errors %}
+              <p class="error-message">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <div class="form-group">
+          <label for="{{ form.username.id_for_label }}">نام کاربری</label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <div class="error">
+              {% for error in form.username.errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      
+        <div class="form-row">
+          <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">نام</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+              <div class="error">
+                {% for error in form.first_name.errors %}
+                  <p class="error-message">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">نام خانوادگی</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+              <div class="error">
+                {% for error in form.last_name.errors %}
+                  <p class="error-message">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">ایمیل</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <div class="error">
+              {% for error in form.email.errors %}
+                <p class="error-message">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      
+        <div class="form-group">
+          <label for="{{ form.profile.id_for_label }}">عکس پروفایل (اختیاری)</label>
+          {{ form.profile }}
+          <img id="profile-preview" src="#" alt="پیش‌نمایش عکس" style="display: none; margin-top: 10px; max-width: 150px; border-radius: 8px;" />
+        </div>
+      
+        <div class="form-row">
+          <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">رمز عبور</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+              <div class="error">
+                {% for error in form.password1.errors %}
+                  <p class="error-message">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">تأیید رمز عبور</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+              <div class="error">
+                {% for error in form.password2.errors %}
+                  <p class="error-message">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      
+        <button class="btn primary" type="submit">ثبت‌نام</button>
+      </form>
+      
+      <p> حساب کاربری دارید؟ <a href="{% url 'rubikamp:user-login' %}"> وارد شوید!</a></p>
+    </section>
+  </div>
+  <script src="{% static 'js/rubikamp/register.js' %}"></script>
+</body>
+</html>
