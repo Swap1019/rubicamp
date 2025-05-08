@@ -81,3 +81,6 @@ AUTH_USER_MODEL = 'rubikamp.User'
 AUTH_PROFILE_MODULE = 'profiles.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://rubicamp.onrender.com']
+
