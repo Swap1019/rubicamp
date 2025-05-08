@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/rubikamp/home.css' %}" />
+  <title>فانتوم | داشبورد</title>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <!-- Navigation (moved up) -->
+        <nav class="top-nav">
+          <a href="{% url 'rubikamp:Home' %}">خانه</a>
+          {% if user.is_authenticated %}
+              <a href="{% url 'rubikamp:user-website-create' %}">وبسایت شما</a>
+          {% endif %}
+          <a href="{% url 'rubikamp:about' %}">درباره ما</a>
+        </nav>
+      
+        <!-- User Info (moved down) -->
+        {% if user.is_authenticated %}
+          <div class="profile-wrapper" onclick="toggleDropdown()">
+            {% if user.profile and user.profile.url %}
+              <img src="{{ user.profile.url }}" alt="پروفایل" class="profile-img" />
+            {% else %}
+              <div class="profile-img" style="background-color: var(--border); display: flex; align-items: center; justify-content: center;">👤</div>
+            {% endif %}
+            <div class="profile-info">{{ user.username }}</div>
+            <div id="userDropdown" class="dropdown">
+              <a href="#">آمار کاربر</a>
+              <form id="logout-form" action="{% url 'rubikamp:user-logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="all: unset; cursor: pointer;">خروج</button>
+              </form>
+            </div>
+          </div>
+        {% else %}
+          <div class="profile-wrapper">
+            <a href="{% url 'rubikamp:user-login' %}" class="create-btn">ورود</a>
+          </div>
+        {% endif %}
+      </div>
+    <!-- Main content -->
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

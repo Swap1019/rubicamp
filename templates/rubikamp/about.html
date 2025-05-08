@@ -1,0 +1,32 @@
+{% extends 'rubikamp/base.html' %}
+{% load static %}
+
+{% block content %}    
+<!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+        
+            <section id="team">
+              <div class="section-title">
+                <h2>اعضای تیم</h2>
+              </div>
+              <div class="team-container">
+                <div class="member-card"><div class="avatar-placeholder">👩‍💻</div><h3>طراح UI</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">👨‍💻</div><h3>برنامه‌نویس</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">📈</div><h3>تحلیل‌گر</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">🧠</div><h3>استراتژیست</h3></div>
+                <div class="member-card"><div class="avatar-placeholder">🎨</div><h3>مدیر هنری</h3></div>
+              </div>
+            </section>
+        
+            <section id="about">
+              <div class="section-title">
+                <h2>درباره ما</h2>
+                <p>فانتوم تیمی است با تخصص در طراحی تجربه دیجیتال منحصربه‌فرد</p>
+              </div>
+            </section>
+          </div>
+    </main>
+
+    <script src="{% static '/js/rubikamp/home.js' %}"></script>
+{% endblock %}

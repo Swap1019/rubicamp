@@ -12,6 +12,7 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=50)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
+    profile = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'id': 'id_profile'}))
 
     class Meta:
         model = User

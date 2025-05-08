@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponseRedirect,get_object_or_404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import (
     SignUpForm,
@@ -12,8 +13,15 @@ from django.views.generic import (
     )
 from django.contrib.auth.views import LoginView,LogoutView
 
+
 class HomeView(TemplateView):
     template_name = 'rubikamp/home.html'
+
+class WebsiteCreateView(LoginRequiredMixin,TemplateView):
+    template_name = 'rubikamp/create-website.html'
+
+class AboutView(TemplateView):
+    template_name = 'rubikamp/about.html'
 
 
 class RegisterView(CreateView):
