@@ -1,0 +1,12 @@
+{% extends 'rubikamp/base.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="main-content">
+    <div class="welcome-box">
+      <h2>تبریک سایت شما ساخته شد! 🎉</h2>
+      <button class="create-btn"><a href="{% url 'rubikamp:user-website-generated' %}">وبسایت شما</a></button>
+    </div>
+  </main>
+  <script src="{% static 'js/rubikamp/home.js' %}"></script>
+{% endblock %}

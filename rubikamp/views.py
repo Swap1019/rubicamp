@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import HttpResponseRedirect,render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +16,8 @@ from django.views.generic import (
     View,
     )
 from django.contrib.auth.views import LoginView,LogoutView
+from django.conf import settings
+from .mixins import UserWebsiteOwnerMixin
 
 
 class HomeView(TemplateView):
@@ -26,13 +29,20 @@ class WebsiteCreateView(LoginRequiredMixin,TemplateView):
 class AboutView(TemplateView):
     template_name = 'rubikamp/about.html'
 
+class UserCongratulations(UserWebsiteOwnerMixin,LoginRequiredMixin,TemplateView):
+    template_name = 'rubikamp/congratulations.html'
+    
+
+class UserGeneratedWebsiteView(UserWebsiteOwnerMixin,LoginRequiredMixin,TemplateView):
+    template_name = 'generated-website/index.html'
+
 class RedirectView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         
         if request.user.is_ownwebsite:
-            return redirect('rubikamp:Home')
+            return redirect('rubikamp:user-website-generated')
 
-        return redirect('rubikamp:user-info-create')
+        return redirect('rubikamp:user-website-create')
 
 STEP_FIELDS = [
     'website_type',
@@ -46,7 +56,7 @@ STEP_FIELDS = [
 
 class UserInfoCreateView(LoginRequiredMixin, View):
     template_name = 'rubikamp/user-info-form.html'
-    success_url = reverse_lazy('rubikamp:Home')
+    success_url = reverse_lazy('rubikamp:user-website-congratulations')
 
     def get(self, request, *args, **kwargs):
         step = int(request.GET.get('step', 1))
