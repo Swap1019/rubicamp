@@ -5,10 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-2yc&%&*6n&ly^9777_6ca44%(zs42=8m16g61-poa1%@3%9&wy'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'rubicamp.onrender.com']
-
+ALLOWED_HOSTS = ['rubicamp.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,10 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rubikamp.apps.RubikampConfig',
-    'cloudinary',
-    'cloudinary_storage',
 ]
-
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Must be at the top
@@ -78,8 +74,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'rubikamp.User'
 AUTH_PROFILE_MODULE = 'profiles.User'
@@ -87,13 +84,3 @@ AUTH_PROFILE_MODULE = 'profiles.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://rubicamp.onrender.com']
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dwfngrwoe',
-    'API_KEY': '891557723998899',
-    'API_SECRET': 'htcgtvfoZrWQEQRuJoS9RPopgg8'
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-
