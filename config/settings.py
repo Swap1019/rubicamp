@@ -7,7 +7,8 @@ SECRET_KEY = 'django-insecure-2yc&%&*6n&ly^9777_6ca44%(zs42=8m16g61-poa1%@3%9&wy
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['rubicamp.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'rubicamp.onrender.com']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -77,8 +78,8 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'rubikamp.User'
 AUTH_PROFILE_MODULE = 'profiles.User'
