@@ -2,9 +2,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.html import mark_safe
+from cloudinary.models import CloudinaryField
 
 class User(AbstractUser):
-    profile = models.ImageField(upload_to="user_profile", blank=True, null=True)
+    profile = CloudinaryField('image',blank=True, null=True)
     is_ownwebsite = models.BooleanField(default=False,verbose_name='website-created')
 
 class UserInfo(models.Model):
