@@ -19,8 +19,8 @@ INSTALLED_APPS = [
     'rubikamp.apps.RubikampConfig',
     'cloudinary',
     'cloudinary_storage',
-    'django.contrib.staticfiles',
 ]
+
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Must be at the top
@@ -86,4 +86,13 @@ AUTH_PROFILE_MODULE = 'profiles.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://rubicamp.onrender.com']
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dwfngrwoe',
+    'API_KEY': '891557723998899',
+    'API_SECRET': 'htcgtvfoZrWQEQRuJoS9RPopgg8'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
